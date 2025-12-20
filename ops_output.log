@@ -1,0 +1,21 @@
+2025-12-20 10:02:28,418 | OrderID=ORD001 | Decision=APPROVE | Reason=Sufficient stock and capacity | Trace=Stock=140 | UsedCapacity=0 | Decision=APPROVE
+2025-12-20 10:02:28,422 | OrderID=ORD002 | Decision=APPROVE | Reason=Sufficient stock and capacity | Trace=Stock=180 | UsedCapacity=120 | Decision=APPROVE
+2025-12-20 10:02:28,422 | OrderID=ORD003 | Decision=SPLIT | Reason=Only 250 units available | Trace=Stock=250 | UsedCapacity=0 | Decision=SPLIT
+2025-12-20 10:02:28,422 | OrderID=ORD004 | Decision=SPLIT | Reason=Only 20 units available | Trace=Stock=20 | UsedCapacity=0 | Decision=SPLIT
+2025-12-20 10:02:28,422 | OrderID=ORD005 | Decision=SPLIT | Reason=Only 100 units available | Trace=Stock=100 | UsedCapacity=0 | Decision=SPLIT
+2025-12-20 10:02:28,436 | OrderID=ORD006 | Decision=SPLIT | Reason=Only 100 units available | Trace=Stock=100 | UsedCapacity=0 | Decision=SPLIT
+2025-12-20 10:02:28,436 | OrderID=ORD007 | Decision=ESCALATE | Reason=No inventory available | Trace=Stock=0 | UsedCapacity=0 | Decision=ESCALATE
+2025-12-20 10:05:36,500 | OrderID=ORD001 | Decision=APPROVE | Reason=Sufficient stock and capacity | Trace=Stock=140 | UsedCapacity=0 | Decision=APPROVE
+2025-12-20 10:05:36,500 | OrderID=ORD002 | Decision=APPROVE | Reason=Sufficient stock and capacity | Trace=Stock=180 | UsedCapacity=120 | Decision=APPROVE
+2025-12-20 10:05:36,500 | OrderID=ORD003 | Decision=SPLIT | Reason=Only 250 units available | Trace=Stock=250 | UsedCapacity=0 | Decision=SPLIT
+2025-12-20 10:05:36,500 | OrderID=ORD004 | Decision=SPLIT | Reason=Only 20 units available | Trace=Stock=20 | UsedCapacity=0 | Decision=SPLIT
+2025-12-20 10:05:36,500 | OrderID=ORD005 | Decision=SPLIT | Reason=Only 100 units available | Trace=Stock=100 | UsedCapacity=0 | Decision=SPLIT
+2025-12-20 10:05:36,500 | OrderID=ORD006 | Decision=SPLIT | Reason=Only 100 units available | Trace=Stock=100 | UsedCapacity=0 | Decision=SPLIT
+2025-12-20 10:05:36,500 | OrderID=ORD007 | Decision=ESCALATE | Reason=No inventory available | Trace=Stock=0 | UsedCapacity=0 | Decision=ESCALATE
+2025-12-20 10:19:48,274 | OrderID=ORD001 | Decision=APPROVE | Reason=Sufficient stock and capacity | Trace=Stock=140 | UsedCapacity=0 | Decision=APPROVE
+2025-12-20 10:19:48,274 | OrderID=ORD002 | Decision=APPROVE | Reason=Sufficient stock and capacity | Trace=Stock=180 | UsedCapacity=120 | Decision=APPROVE
+2025-12-20 10:19:48,274 | OrderID=ORD003 | Decision=SPLIT | Reason=Only 250 units available | Trace=Stock=250 | UsedCapacity=0 | Decision=SPLIT
+2025-12-20 10:19:48,274 | OrderID=ORD004 | Decision=SPLIT | Reason=Only 20 units available | Trace=Stock=20 | UsedCapacity=0 | Decision=SPLIT
+2025-12-20 10:19:48,274 | OrderID=ORD005 | Decision=SPLIT | Reason=Only 100 units available | Trace=Stock=100 | UsedCapacity=0 | Decision=SPLIT
+2025-12-20 10:19:48,274 | OrderID=ORD006 | Decision=SPLIT | Reason=Only 100 units available | Trace=Stock=100 | UsedCapacity=0 | Decision=SPLIT
+2025-12-20 10:19:48,274 | OrderID=ORD007 | Decision=ESCALATE | Reason=No inventory available | Trace=Stock=0 | UsedCapacity=0 | Decision=ESCALATE
