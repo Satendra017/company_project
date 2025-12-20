@@ -99,14 +99,18 @@ python -m venv .venv
 .venv\Scripts\activate   # Windows
 
 2️⃣ Install dependencies
+
 pip install -r requirements.txt
 
 **▶️ How to Run (Correct Order)**
 🔹 Terminal 1 – Start Dashboard
+
 streamlit run dashboard.py
 
 🔹 Terminal 2 – Start Watcher (Automation)
+
 python watcher.py
+
 Watches orders.csv and triggers processing automatically.
 
 🔹 Add New Orders
