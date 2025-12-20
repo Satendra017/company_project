@@ -2,85 +2,123 @@
 🧠 AI Ops Assistant – Order Intelligence System (LangGraph)
 Overview
 
-This project implements an AI-powered Operations Assistant that automatically evaluates incoming orders based on inventory availability, daily production capacity, and order priority.
-The system is built using LangGraph to model real operational decision-making in a structured, state-driven workflow.
+This project implements a real-world AI Operations Assistant that automatically evaluates incoming orders based on inventory availability, daily production capacity, and order priority.
 
+The system is built using LangGraph to model deterministic, production-grade decision-making and includes:
 **Features**
 
-* Automatically reads incoming orders
-* Validates inventory availability
-* Enforces daily production capacity constraints
-* Handles urgent vs normal priorities
-* Prevents negative inventory
-* Generates clear operational decisions:
+Key Features
 
-      .APPROVE
+✅ Automatically reads new orders from CSV
 
-      .DELAY
+✅ Validates inventory availability
 
-      .SPLIT
+✅ Enforces daily production capacity (200 units/day)
 
-      .ESCALATE
+✅ Detects and flags:
 
-* Provides human-readable reasoning for every decision
-* Self-healing system (auto-creates required data files if missing)
-* Console output acts as an operational log
+Stock shortages
+
+Capacity overloads
+
+✅ Generates decisions per order:
+
+      . APPROVE
+
+      . DELAY
+
+      . SPLIT
+
+      . ESCALATE
+
+✅ Human-readable recommendation reasons
+
+✅ Logs decisions to a file
+
+✅ Sends Slack alerts for escalations (optional)
+
+✅ Live Streamlit dashboard with:
+
+       . Auto-refresh
+
+       . Filters
+
+       . Metrics
+
+       . CSV export
+
+✅ File-watcher for automatic reprocessing on new data
 
 **Tech Stack**
 
 * Python 3.9+
 * LangGraph
+* LangChain
 * Pandas
+* Streamlit
+* Requests
+
 Project Structure
 company/
 
-├── app.py
+company/
+├── app.py              # LangGraph core decision engine
+├── watcher.py          # File watcher for auto-processing
+├── dashboard.py        # Streamlit dashboard
+├── notifier.py         # Logging + Slack alerts
+├── requirements.txt
+├── README.md
+├── .gitignore
 └── data/
     ├── orders.csv
     └── inventory.csv
 
-
- **Note:**
-If the data/ folder or CSV files are missing, the system automatically creates them on first run.
-
 **Business Rules Implemented**
 
-* Maximum production capacity: 200 units per day
-* No negative inventory allowed
-* Urgent orders may escalate but cannot violate constraints
-* Orders exceeding stock are split
-* Orders exceeding capacity are delayed or escalated
+1. Maximum production capacity: 200 units per day
+2. No negative inventory allowed
+3. Urgent orders may escalate but never violate constraints
+4. Orders exceeding stock → Split
+5. Orders exceeding capacity → Delay / Escalate
+6. One final decision per order with clear reasoning
 
 **How the System Works**
 
-* LangGraph initializes the workflow
-* Orders and inventory are loaded into state
+1. Watcher monitors orders.csv for changes
+2. On detecting new data, it automatically runs app.py
+3. LangGraph processes all orders using current inventory & capacity
+4. Decisions + reasoning are:
+5.           . Printed to console
+6.           . Logged to ops_output.log
+7.           . Sent to Slack if escalated
+8. Streamlit dashboard auto-refreshes and displays results
 
-* Each order is evaluated against:
-       . Available inventory
-
-       .  Daily production capacity
-
-       . Priority level
-
-* A decision and reason are generated
-* Results are logged to the console
-* Graph terminates cleanly
-
-**Installation & Run Instructions**
-1️ Create virtual environment (optional)
+▶️ Working Demo & Execution Proof
+1️⃣ Create & activate virtual environment (recommended)
 python -m venv .venv
-source .venv/bin/activate   # Windows: .venv\Scripts\activate
+.venv\Scripts\activate   # Windows
 
-2️ Install dependencies
-pip install pandas langgraph
+2️⃣ Install dependencies
+pip install -r requirements.txt
 
-3️ Run the application
-python app.py
+**▶️ How to Run (Correct Order)**
+🔹 Terminal 1 – Start Dashboard
+streamlit run dashboard.py
 
-**Sample Output**
-ORD001 → APPROVE
-Reason: Sufficient stock and capacity
+🔹 Terminal 2 – Start Watcher (Automation)
+python watcher.py
+Watches orders.csv and triggers processing automatically.
+
+🔹 Add New Orders
+
+Edit data/orders.csv, add a new row, and save the file.
+
+✅ Processing starts automatically
+✅ Logs update
+✅ Dashboard refreshes
+
+
+**Sample Console Output**
 
 ORD003 → SPLIT
 Reason: Only 250 units available, rest delayed
@@ -88,23 +126,53 @@ Reason: Only 250 units available, rest delayed
 ORD007 → ESCALATE
 Reason: Daily production capacity exceeded
 
-**Failure Handling & Edge Cases**
+**Log File Output**
 
-* Missing CSV files → auto-generated
-* Dirty CSV headers → cleaned automatically
-* Capacity overload → delayed or escalated
-* Zero inventory → escalated
-* Safe termination (no infinite loops)
+All decisions are appended to:
+
+ops_output.log
+
+Each log entry includes:
+       . Order ID
+       . Decision
+       . Reason
+       . Execution trace
+
+**📈 Dashboard Capabilities**
+
+* Live auto-refresh
+* Decision filtering (Approve / Delay / Split / Escalate)
+* Summary metrics
+* Execution trace per order
+* CSV export of results
+
+**Logic**
+
+The system automatically reads new orders, checks inventory availability and daily production capacity, and generates one operational decision (Approve, Delay, Split, or Escalate) per order.
+All decisions are deterministic, constraint-driven, and include a clear human-readable reason.
+
+**🛠 Failure Handling & Edge Cases**
+Missing data files are auto-created, CSV headers are normalized, inventory is never allowed to go negative, capacity overloads are safely delayed or escalated, Python environment mismatches are avoided, and the dashboard gracefully handles missing or delayed logs.
 
 **Assumptions**
 
 * Orders are processed sequentially
-* Production capacity resets daily
 * Inventory is shared across days
-* Console output is sufficient for Level-1 evaluation
+* Production capacity resets daily
+* CSV files act as data ingestion source
+* Console + logs are sufficient for Level-1 evaluation
 
-**Author**
+**Future Enhancements (Level-2 Ready)**
+
+* LLM-based reasoning node
+* Autonomous capacity forecasting
+* Multi-agent negotiation (Sales vs Ops)
+* Database-backed ingestion
+* API-based order intake
+* Cloud deployment
+
+Author
 
 Satendra
 AI / ML Engineer
-LangGraph • Automation • Operations Intelligence
+Automation • LangGraph • Operations Intelligence
